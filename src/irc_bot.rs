@@ -8,7 +8,6 @@ use std::sync::mpsc::Receiver;
 use std::sync::atomic::Ordering::SeqCst;
 use std::result::Result::{Ok, Err};
 use IrcChannelTextMessage;
-use std::sync::{Mutex, Condvar};
 
 pub struct IrcBot {
     server: NetIrcServer,

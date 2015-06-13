@@ -1,5 +1,5 @@
 [root]
-name = "hello_world"
+name = "http-to-irc-bridge"
 version = "0.0.1"
 dependencies = [
  "hyper 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
