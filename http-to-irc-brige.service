@@ -1,0 +1,10 @@
+[Unit]
+Description=simple IRC bot that exposes an HTTP endpoint
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/httptoircbridge
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

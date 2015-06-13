@@ -21,19 +21,25 @@ struct IrcChannelTextMessage {
 fn main() {
     let alive = Arc::new(AtomicBool::new(true));
 
-    let irc_config: Config = Config::load_utf8("config.json").unwrap();
-    let (http_port, http_host) = get_port_and_host(&irc_config);
+    match Config::load_utf8("/etc/httptoircbridge/config.json") {
+        Err(_) => {
+            panic!("Please provide a valid config file in /etc/httptoircbridge/config.json");
+        },
+        Ok(irc_config) => {
+            let (http_port, http_host) = get_port_and_host(&irc_config);
 
-    let irc = irc_bot::IrcBot::new(irc_config);
-    let http = http_server::HttpServer::new(http_port, http_host);
+            let irc = irc_bot::IrcBot::new(irc_config);
+            let http = http_server::HttpServer::new(http_port, http_host);
 
-    let (tx, rx): (Sender<IrcChannelTextMessage>, Receiver<IrcChannelTextMessage>) = mpsc::channel();
+            let (tx, rx): (Sender<IrcChannelTextMessage>, Receiver<IrcChannelTextMessage>) = mpsc::channel();
 
-    let irc_handler = irc.start(rx, alive.clone());
-    let http_handler = http.start(tx, alive.clone());
+            let irc_handler = irc.start(rx, alive.clone());
+            let http_handler = http.start(tx, alive.clone());
 
-    http_handler.join().unwrap();
-    irc_handler.join().unwrap();
+            http_handler.join().unwrap();
+            irc_handler.join().unwrap();
+        }
+    }
 }
 
 fn get_port_and_host(config: &Config) -> (u16, String) {

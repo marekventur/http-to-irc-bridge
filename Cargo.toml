@@ -1,5 +1,5 @@
 [package]
-name = "http-to-irc-bridge"
+name = "httptoircbridge"
 version = "0.0.1"
 authors = [ "Marek Ventur <marekventur@gmail.com>" ]
 

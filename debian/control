@@ -1,0 +1,15 @@
+Source: httptoircbridge
+Section: utils
+Priority: optional
+Maintainer: Marek <mail@marekventur.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/marekventur/http-to-irc-bridge
+
+Package: httptoircbridge
+Architecture: any
+Pre-Depends: adduser
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: HTTP-to-IRC bridge
+ This is a simple IRC bot that exposes and HTTP endpoint for sending messages to
+ channels and users.

@@ -1,0 +1,24 @@
+#!/bin/sh
+# postinst script for httptoircbridge
+#
+# see: dh_installdeb(1)
+
+set -e
+
+if [ "$1" = configure ]; then
+  # Automatically added by dh_installinit
+  if ! getent passwd _httptoircbridge > /dev/null; then
+    adduser --system --quiet --home /nonexistent --no-create-home \
+      --shell /bin/false --force-badname --group --gecos "httptoircbridge User" _httptoircbridge
+  fi
+
+  if ! dpkg-statoverride --list /var/run/httptoircbridge >/dev/null 2>&1; then
+    dpkg-statoverride --update --add _httptoircbridge _httptoircbridge 0755 /var/run/httptoircbridge
+  fi
+
+  if [ -x "/etc/init.d/httptoircbridge" ]; then
+    update-rc.d httptoircbridge defaults >/dev/null
+    invoke-rc.d httptoircbridge start || exit $?
+  fi
+fi
+

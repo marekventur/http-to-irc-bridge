@@ -1,0 +1,20 @@
+#!/bin/sh
+# postrm script for httptoircbridge
+#
+# see: dh_installdeb(1)
+
+set -e
+
+if [ "$1" = purge ]; then
+
+  update-rc.d httptoircbridge remove >/dev/null || true
+
+  rm -rf /var/run/httptoircbridge
+
+  if dpkg-statoverride --list /var/run/httptoircbridge >/dev/null 2>&1; then
+    dpkg-statoverride --remove /var/run/httptoircbridge
+  fi
+
+  deluser --system --quiet _httptoirc || true
+  delgroup --system --quiet _httptoirc || true
+fi

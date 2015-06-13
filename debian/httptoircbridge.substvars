@@ -1,0 +1,2 @@
+shlibs:Depends=libc6 (>= 2.18), libgcc1 (>= 1:4.1.1), libssl1.0.0 (>= 1.0.0)
+misc:Depends=
