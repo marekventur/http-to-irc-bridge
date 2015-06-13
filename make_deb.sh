@@ -2,6 +2,8 @@
 set -e
 
 # sudo apt-get install -y build-essential devscripts debhelper
+#
+# This will not work on any platform that isn't amd64
 
 mkdir -m 0755 -p deb-build
 cd deb-build
