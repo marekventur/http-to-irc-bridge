@@ -1,0 +1,9 @@
+[package]
+name = "hello_world"
+version = "0.0.1"
+authors = [ "Marek Ventur <marekventur@gmail.com>" ]
+
+[dependencies]
+irc = "*"
+hyper = "*"
+regex = "0.1.8"

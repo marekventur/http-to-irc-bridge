@@ -1,0 +1,21 @@
+{
+    "owners": [
+        "yournick"
+    ],
+    "nickname": "yourbot",
+    "username": "yourbot",
+    "realname": "yourbot",
+    "password": "",
+    "server": "irc.someserver.net",
+    "port": 7000,
+    "use_ssl": true,
+    "encoding": "UTF-8",
+    "channels": [
+        "#somechannel"
+    ],
+    "umodes": "+BR",
+    "options": {
+        "http_port": "36004",
+        "http_host": "127.0.0.1"
+    }
+}
